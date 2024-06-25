@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:noviindus/data/apis/patients_list.dart';
+import 'package:noviindus/presentation/views/home.dart';
 import 'package:noviindus/presentation/widgets/input_text_field.dart';
 
 class LoginScreen extends StatelessWidget {
@@ -65,18 +67,31 @@ class LoginScreen extends StatelessWidget {
                         hintText: "Enter Password",
                       ),
                       SizedBox(height: height * 0.075),
-                      Container(
-                        height: height * 0.07,
-                        decoration: BoxDecoration(
-                          color: Colors.green[900],
-                          borderRadius: BorderRadius.circular(height * 0.01),
-                        ),
-                        child: Center(
-                          child: Text(
-                            "Login",
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: height * 0.02,
+                      GestureDetector(
+                        onTap: () async {
+                          ApiService apiService = ApiService();
+                          List<dynamic>? patiests =
+                              await apiService.fetchPatientList(
+                                  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxODA1NjE4OTQwLCJpYXQiOjE3MTkyMTg5NDAsImp0aSI6IjQ2Zjk5YzAwNzVlYjQ5ZmRhMjE1NGJjNmFjYWFlMDE5IiwidXNlcl9pZCI6MjF9.E1UYHkbWbATDcUTWxzQIOcJyv2DCsu7xwrGlxMquP-0");
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => Home(),
+                              ));
+                        },
+                        child: Container(
+                          height: height * 0.07,
+                          decoration: BoxDecoration(
+                            color: Colors.green[900],
+                            borderRadius: BorderRadius.circular(height * 0.01),
+                          ),
+                          child: Center(
+                            child: Text(
+                              "Login",
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: height * 0.02,
+                              ),
                             ),
                           ),
                         ),

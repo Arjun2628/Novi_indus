@@ -2,13 +2,17 @@ import 'package:flutter/material.dart';
 
 class InputTileWidget extends StatelessWidget {
   final String tileName;
-  final String hintText;
+  final String? hintText;
   const InputTileWidget(
-      {super.key, required this.tileName, required this.hintText});
+      {super.key, required this.tileName, this.hintText,});
 
   @override
   Widget build(BuildContext context) {
     final height = MediaQuery.of(context).size.height;
+    // bool 
+    // if(trailing!=null){
+    
+    // }
     return Column(
       children: [
         Align(alignment: Alignment.centerLeft, child: Text(tileName)),
@@ -28,7 +32,7 @@ class InputTileWidget extends StatelessWidget {
             child: TextFormField(
               decoration: InputDecoration(
                   border: InputBorder.none,
-                  hintText: hintText,
+                  hintText: hintText??"",
                   hintStyle: TextStyle(color: Colors.grey)),
             ),
           ),
